@@ -1,5 +1,6 @@
 package de.bitb.testingApi.datasource.mock
 
+import de.bitb.testingApi.datasource.config.mock.MockConfigDataSource
 import de.bitb.testingApi.models.ConfigType
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test

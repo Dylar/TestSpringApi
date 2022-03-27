@@ -1,8 +1,6 @@
 package de.bitb.testingApi.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.jsonMapper
-import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import de.bitb.testingApi.getAndParse
 import de.bitb.testingApi.models.COLORS
 import de.bitb.testingApi.models.ConfigData
@@ -18,7 +16,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
-import org.springframework.test.web.servlet.ResultActionsDsl
 import org.springframework.test.web.servlet.get
 import org.springframework.test.web.servlet.post
 
@@ -62,7 +59,9 @@ internal class ConfigControllerTest @Autowired constructor(
         @Test
         fun `set color config`() {
             //given
+            val type = ConfigType.COLOR.name
             val newConfig = ConfigData(ConfigType.COLOR, COLORS.TEAL_BLUE)
+            val currentConfig: ConfigData = mockMvc.getAndParse("$CONFIG_URL/$type", ConfigData::class.java)
 
             //when
             val call = mockMvc.post(CONFIG_URL) {
@@ -70,18 +69,31 @@ internal class ConfigControllerTest @Autowired constructor(
                 content = mapper.writeValueAsString(newConfig)
             }
 
-            //then
             val response = call
                 .andDo { print() }
                 .andExpect {
                     status { isCreated() }
-                    content { contentType(MediaType.APPLICATION_JSON) }
+                    content {
+                        contentType(MediaType.APPLICATION_JSON)
+                        json(mapper.writeValueAsString(newConfig))
+                    }
                 }
                 .andReturn().response.contentAsByteArray
                 .let { mapper.readValue(it, ConfigData::class.java) }
 
             assertThat(response.type).isEqualTo(newConfig.type)
             assertThat(response.value).isEqualTo((newConfig.value as COLORS).name)
+
+            //then
+            mockMvc.get("$CONFIG_URL/$type")
+                .andDo { print() }
+                .andExpect {
+                    status { isOk() }
+                    content {
+                        contentType(MediaType.APPLICATION_JSON)
+                        json(mapper.writeValueAsString(newConfig))
+                    }
+                }
         }
 
         @Test

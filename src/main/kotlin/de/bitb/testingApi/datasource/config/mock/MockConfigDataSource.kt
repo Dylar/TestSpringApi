@@ -1,13 +1,13 @@
-package de.bitb.testingApi.datasource.mock
+package de.bitb.testingApi.datasource.config.mock
 
-import de.bitb.testingApi.datasource.ConfigDataSource
+import de.bitb.testingApi.datasource.config.ConfigDataSource
 import de.bitb.testingApi.models.COLORS
 import de.bitb.testingApi.models.ConfigData
 import de.bitb.testingApi.models.ConfigType
 import de.bitb.testingApi.models.Configuration
 import org.springframework.stereotype.Repository
 
-@Repository
+@Repository("mock")
 class MockConfigDataSource : ConfigDataSource {
 
     private val configuration = Configuration(

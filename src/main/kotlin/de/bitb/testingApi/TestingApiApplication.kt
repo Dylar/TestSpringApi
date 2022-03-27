@@ -18,7 +18,7 @@ fun main(args: Array<String>) {
 @SpringBootApplication
 class TestingApiApplication {
     private val log: Logger = LoggerFactory.getLogger(TestingApiApplication::class.java)
-    private val url = "https://quoters.apps.pcfone.io/api/random"
+//    private val url = "https://quoters.apps.pcfone.io/api/random"
 
     @Bean
     fun restTemplate(builder: RestTemplateBuilder): RestTemplate = builder.build()
@@ -27,7 +27,7 @@ class TestingApiApplication {
     @Throws(Exception::class)
     fun run(restTemplate: RestTemplate): CommandLineRunner =
         CommandLineRunner { args: Array<String?>? ->
-            val quote = restTemplate.getForObject(url, Quote::class.java)
-            log.info(quote.toString())
+//            val quote = restTemplate.getForObject(url, Quote::class.java)
+//            log.info(quote.toString())
         }
 }

@@ -1,12 +1,9 @@
 package de.bitb.testingApi.service
 
-import de.bitb.testingApi.datasource.ConfigDataSource
+import de.bitb.testingApi.datasource.config.ConfigDataSource
 import de.bitb.testingApi.models.ConfigType
-import de.bitb.testingApi.models.Configuration
-import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 internal class ConfigServiceTest {
