@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "de.bitb"
-version = "0.0.1-SNAPSHOT"
+version = "0.0.1"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
@@ -17,7 +17,6 @@ repositories {
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web:2.5.5")
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.0")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.+")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
