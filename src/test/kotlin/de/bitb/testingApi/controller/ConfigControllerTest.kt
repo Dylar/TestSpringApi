@@ -61,7 +61,7 @@ internal class ConfigControllerTest @Autowired constructor(
             //given
             val type = ConfigType.COLOR.name
             val newConfig = ConfigData(ConfigType.COLOR, COLORS.TEAL_BLUE)
-            val currentConfig: ConfigData = mockMvc.getAndParse("$CONFIG_URL/$type", ConfigData::class.java)
+//            val currentConfig: ConfigData = mockMvc.getAndParse("$CONFIG_URL/$type", ConfigData::class.java)
 
             //when
             val call = mockMvc.post(CONFIG_URL) {

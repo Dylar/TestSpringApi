@@ -1,1 +1,1 @@
-rootProject.name = "testing-api"
+rootProject.name = "qcar-backend"
