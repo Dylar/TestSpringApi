@@ -9,3 +9,6 @@ Docker:
     Show: docker ps
     Stop: docker stop -t <Timeout> <Container-Id>
 <!--     Stop: docker stop -t 60 9b12abf55933 -->
+    Stop: ./gradlew dockerStop
+    Push: docker push dylar/qcar-backend:tagname
+<!--     ./gradlew docker dockerPush -->
